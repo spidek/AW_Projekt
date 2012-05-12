@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:view>
+        <h:head>
+            <title>Komunikator internetowy</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link type="text/css" rel="stylesheet" href="style/style.css" /> 
+        </h:head>
+        <h:form>
+        <h:body>
+            <div id="wrapper">
+                <div id="menu">
+                    <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> <!-- <%= session.getAttribute("name") %> -->
+                    <p class="logout">
+                        <h:outputLink value="logowanie.xhtml"> 
+                            <h:outputText value="Wyjście z czatu"/> 
+                        </h:outputLink>
+                    </p>
+                    <div style="clear:both"> </div>
+                </div>
+                    
+                <div id="chatbox"></div>
+                
+                <form name="message" action="">
+                    <h:inputText id="userMessage" size="63"/>
+                    <h:commandButton id="submitMessage" value="Wyślij" action="#" />
+                </form>
+            </div>
+        </h:body>
+        </h:form>
+    </f:view>
+</html>
+

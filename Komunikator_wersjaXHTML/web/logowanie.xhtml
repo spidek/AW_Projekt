@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Logowanie</title>
+        <link type="text/css" rel="stylesheet" href="style/style.css" /> 
+    </h:head>
+    <body>
+        <h1><h:outputText value="#{User.info}" /></h1>
+            <div id="loginform">
+                <h:form>
+                    <p>Wypełnij wymagane pola, aby przejść do czatu:</p>
+                    <font color="red">*</font>
+                    <h:outputText value="Imię: "></h:outputText>
+                    <h:inputText id="name" label="name" required="true" value="#{User.name}"/>
+                    
+            <p>Pola oznaczone symbolem <font color="red">*</font> są wymagane.</p>
+            
+            <!-- chciałam zrobić takie rozwiązanie jak na ten stronie: 
+            http://stackoverflow.com/questions/3698579/show-hide-jsf2-form-using-selectbooleancheckbox 
+            -->
+               
+            <fieldset>
+                <legend>
+                    <h:selectBooleanCheckbox value="#{User.chkBoxChecked}">
+                        <f:ajax event="click" render="@form" />
+                    </h:selectBooleanCheckbox>
+                    <h:outputText value="Więcej informacji" />
+                </legend>
+                <h:panelGroup>
+                    <p>
+                        <h:outputLabel for="city" value="Miasto: " />
+                        <h:inputText id="city" value="#{User.city}" />
+                    </p>
+                    <p>
+                        <h:outputLabel for="age" value="Wiek: " />
+                        <h:inputText id="age" value="#{User.age}" />
+                    </p>
+                </h:panelGroup>
+            </fieldset>
+              <h:commandButton value="Wejdź" action="index" />                    
+            </h:form>
+        <h:message for="name" errorClass="error" /> <br /><br />
+            </div>
+    </body>
+</f:view>
+</html>

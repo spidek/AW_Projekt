@@ -4,10 +4,12 @@
  */
 package aw.projekt;
 
+import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -23,7 +25,7 @@ public class UserBean {
     private String city;
     private String age;
     private String info; 
-    private boolean chkBoxChecked; 
+    private boolean chkBoxChecked;
     
     public UserBean() { 
         this.chkBoxChecked = false; 

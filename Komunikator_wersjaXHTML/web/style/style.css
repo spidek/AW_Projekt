@@ -38,17 +38,23 @@ a:hover { text-decoration:underline; }
 #chatbox {  
     text-align:left;  
     margin:0 auto;  
+    margin-left: 25px; 
     margin-bottom:25px;  
     padding:10px;  
     background:#fff;  
     height:270px;  
-    width:430px;  
+    width:330px;  
     border:1px solid #ACD8F0;  
-    overflow:auto; }  
+    overflow:auto; 
+    float: left;
+}  
   
 #userMessage {  
     width:395px;  
-    border:1px solid #ACD8F0; }  
+    border:1px solid #ACD8F0; 
+} 
+
+.uMessage {width: 350px; }
   
 #submit { width: 60px; } 
 
@@ -57,6 +63,22 @@ a:hover { text-decoration:underline; }
 .error { color: #ff0000; }  
   
 #menu { padding:12.5px 25px 12.5px 25px; }  
+
+#userList { 
+    float: left; 
+    margin: 5px;  
+} 
+
+.user { 
+    height: 295px; 
+    padding: 5px;
+    margin-bottom: 6px; 
+}
+
+.chat { 
+    height: 290px;
+    width: 300px; 
+}
   
 .welcome { float:left; }  
   

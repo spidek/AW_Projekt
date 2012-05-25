@@ -20,14 +20,18 @@
                         </h:outputLink>
                     </p>
                     <div style="clear:both"> </div>
-                </div>
-                    
-                <div id="chatbox"></div>
+                </div>      
+              <!--  <div id="chatbox" ></div> -->
+              <h:inputTextarea id="chatbox" class="chat" readonly="true" value="#{Chat.messages}" />
                 
-                <form name="message" action="">
-                    <h:inputText id="userMessage" size="63"/>
-                    <h:commandButton id="submitMessage" value="Wyślij" action="#" />
-                </form>
+                <h:selectManyListbox id="userList" class="user">
+                    <f:selectItems value="#{Chat.returnUserzy()}" />
+                </h:selectManyListbox>
+              
+                <h:inputText id="userMessage" class="uMessage" value="#{Chat.messages}"/>
+                <h:commandButton id="submitMessage" value="Wyślij" action="index" />
+               
+                
             </div>
         </h:body>
         </h:form>

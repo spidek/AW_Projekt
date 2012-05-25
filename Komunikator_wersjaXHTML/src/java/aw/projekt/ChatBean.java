@@ -4,28 +4,53 @@
  */
 package aw.projekt;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set; 
+import java.util.*; 
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 /**
  *
  * @author Karolina
  */
-@Stateless
-@LocalBean
-@SessionScoped
+@Stateful
+@ApplicationScoped
 @ManagedBean(name="Chat")
 public class ChatBean {
 
     private Map users = new HashMap();
-    private List messages = new LinkedList(); 
+    private List<String> messages = new ArrayList<String>(); 
+    
+    public ChatBean () {
+        messages.add("Start chatu.");
+    }
+    
+    public void setMessages(String msg){
+        messages.add(msg);
+    }
+    
+    public String getMessages(){
+        StringBuilder chatBox = new StringBuilder();
+        for (String s : this.messages) {
+            chatBox.append(s).append("\n");
+        }
+        return chatBox.toString();
+    }
+    
+    public SelectItem[] returnUserzy (){
+        
+        for (int i = 0; i < 5; ++i)
+            users.put(i, "user");
+        
+        SelectItem[] usersBox = new SelectItem[users.size()];
+        for (int i = 0; i < 5; i++)
+            usersBox[i] = new SelectItem(i, "uzytkownik" + i);
+        return usersBox;
+    }
     
     public synchronized void addUser (UserBean user){
         users.put(user.getName(), user);

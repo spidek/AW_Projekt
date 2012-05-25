@@ -91,4 +91,10 @@ public class UserBean {
         this.chkBoxChecked = chkBoxChecked;
     }
     
+    public String writeMessage(MessageBean msg) {        
+        String chatBoxMsg = "<" + msg.getTime() + " " + this.name + "> " + msg.getMessage();
+        msg.setMessage("");
+        return chatBoxMsg;
+    }
+    
 }

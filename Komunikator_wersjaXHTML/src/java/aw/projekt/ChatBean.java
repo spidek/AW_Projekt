@@ -22,15 +22,18 @@ import javax.faces.model.SelectItem;
 @ManagedBean(name="Chat")
 public class ChatBean {
 
-    private Map users = new HashMap();
+    private List<String> users = new ArrayList<String>();
     private List<String> messages = new ArrayList<String>(); 
     
     public ChatBean () {
         messages.add("Start chatu.");
+        users.add("Admin");
     }
     
-    public void setMessages(String msg){
+    public String addMessage(String msg){
         messages.add(msg);
+        
+        return "index";
     }
     
     public String getMessages(){
@@ -41,19 +44,18 @@ public class ChatBean {
         return chatBox.toString();
     }
     
-    public SelectItem[] returnUserzy (){
-        
-        for (int i = 0; i < 5; ++i)
-            users.put(i, "user");
-        
+    public SelectItem[] returnUserzy (){        
         SelectItem[] usersBox = new SelectItem[users.size()];
-        for (int i = 0; i < 5; i++)
-            usersBox[i] = new SelectItem(i, "uzytkownik" + i);
+        int loop = this.users.size();
+        for (int i = 0; i < loop; i++)
+            usersBox[i] = new SelectItem(i, users.get(i));
         return usersBox;
     }
     
-    public synchronized void addUser (UserBean user){
-        users.put(user.getName(), user);
+    public synchronized String addUser(UserBean user){
+        users.add(user.getName());
+        
+        return "index";
     }
     
     public synchronized Object removeUser (String userName){
@@ -62,9 +64,5 @@ public class ChatBean {
     
     public int getNumerOfUsers(){
         return users.size();
-    }
-    
-    public Set getUsers(){
-        return users.entrySet();
     }
 }

@@ -4,8 +4,13 @@
  */
 package aw.projekt;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -13,43 +18,29 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Karolina
  */
-@Stateless
-@LocalBean
-@SessionScoped
+@Stateful
+@RequestScoped
 @ManagedBean(name="Message")
 public class MessageBean {
-
-    private String userName; 
     private String message; 
-    private long timeStamp;
     
-    public MessageBean(){}
-    
-    public MessageBean(String name, String message, long timeStamp) {
-        this.userName = name;
-        this.message = message; 
-        this.timeStamp = timeStamp;
-    }
-
     /**
-     * @return the userName
+     * @return the message
      */
-    public String getUserName() {
-        return userName;
+    public void setMessage(String message) {
+        this.message = message;
     }
-
+    
+    public String getTime() {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+    
     /**
      * @return the message
      */
     public String getMessage() {
         return message;
     }
-
-    /**
-     * @return the timeStamp
-     */
-    public long getTimeStamp() {
-        return timeStamp;
-    }
-    
 }

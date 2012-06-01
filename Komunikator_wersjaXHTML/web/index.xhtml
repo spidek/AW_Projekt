@@ -3,12 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core" >
-<!--      xmlns:a4j="http://richfaces.org/a4j" -->
+<!--      xmlns:a4j="http://richfaces.org/a4j" >-->
     <f:view>
         <h:head>
             <title>Komunikator internetowy</title>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <link type="text/css" rel="stylesheet" href="style/style.css" /> 
+            <script src="http://code.jquery.com/jquery-latest.js"></script>
+            <script>
+                $(document).ready(function() {
+                 	 $("#chatForm\\:chatbox").load("chat.html");
+//                var refreshId = setInterval(function() {
+//                //      $("#chatbox").load('chat.html');
+////                        alert("Działaj!");
+//                }, 5000);
+//                $.ajaxSetup({ cache: false });
+
+//                  $("#chatbox").load("/chat.html", function(response, status, xhr) {
+//                    if (status == "error") {
+//                        var msg = "Sorry but there was an error: ";
+//                        $("#chatbox").html(msg + xhr.status + " " + xhr.statusText);
+//                    }
+//                $("#chatbox").html("Hello");
+                });
+            </script>
         </h:head>
         <h:body>  
 <!--            <a4j:region>
@@ -17,7 +35,7 @@
                         reRender="chatbox" />
                 </h:form>
             </a4j:region>-->
-            <h:form>
+            <h:form id="chatForm">
                 <div id="wrapper">
                     <div id="menu">
                         <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> <!-- <%= session.getAttribute("name") %> -->
@@ -28,14 +46,14 @@
                         </p>
                         <div style="clear:both"> </div>
                     </div>      
-                <!--  <div id="chatbox" ></div> -->
-                <h:inputTextarea id="chatbox" class="chat" readonly="true" value="#{Chat.messages}" />
+<!--                  <div id="chatbox" ></div> -->
+                <h:inputTextarea id="chatbox" class="chat" readonly="true" />
 
                     <h:selectManyListbox id="userList" class="user">
                         <f:selectItems value="#{Chat.returnUserzy()}" />
                     </h:selectManyListbox>
 
-                <h:inputText id="userMessage" class="uMessage" value="#{Message.message}"/>
+                <h:inputText id="userMessage" class="uMessage" value="#{Message.message}" required="true"/>
                 <h:commandButton id="submitMessage" value="Wyślij" action="#{Chat.addMessage(User.writeMessage(Message))}" />    
                 </div>
             </h:form>

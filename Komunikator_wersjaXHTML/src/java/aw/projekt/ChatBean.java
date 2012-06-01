@@ -4,10 +4,7 @@
  */
 package aw.projekt;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -38,8 +36,8 @@ public class ChatBean {
         ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String chatHtmlPath = ctx.getRealPath("/") + "chat.html";
         try {
-            this.chatHtmlBufferWriter = new FileOutputStream(chatHtmlPath);
-            this.chatHtmlBufferWriter.write("Start chatu\n".getBytes());
+            this.chatHtmlBufferWriter = new FileOutputStream(chatHtmlPath);  
+            this.chatHtmlBufferWriter.write("Start chatu ąęć.\n".getBytes());
         } catch (IOException ex) {
             this.chatHtmlBufferWriter.close();
             throw ex;
@@ -54,7 +52,8 @@ public class ChatBean {
     }
     
     public String addMessage(String msg) throws IOException {
-        this.chatHtmlBufferWriter.write(msg.getBytes());        
+        this.chatHtmlBufferWriter.write(msg.getBytes());    
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         return "index"; 
     } 
     
@@ -71,9 +70,9 @@ public class ChatBean {
         return usersBox;
     }
     
-    public synchronized String addUser(UserBean user){
+    public synchronized String addUser(UserBean user) throws IOException{
         users.add(user.getName());
-        
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         return "index";
     }
     

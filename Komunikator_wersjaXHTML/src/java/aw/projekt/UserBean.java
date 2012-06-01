@@ -92,7 +92,7 @@ public class UserBean {
     }
     
     public String writeMessage(MessageBean msg) {        
-        String chatBoxMsg = "<" + msg.getTime() + " " + this.name + "> " + msg.getMessage();
+        String chatBoxMsg = "<" + msg.getTime() + " " + this.name + "> " + msg.getMessage() + "\n";
         msg.setMessage("");
         return chatBoxMsg;
     }

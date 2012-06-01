@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core" >
-<!--      xmlns:a4j="http://richfaces.org/a4j" >-->
     <f:view>
         <h:head>
             <title>Komunikator internetowy</title>
@@ -12,29 +11,15 @@
             <script src="http://code.jquery.com/jquery-latest.js"></script>
             <script>
                 $(document).ready(function() {
-                 	 $("#chatForm\\:chatbox").load("chat.html");
-//                var refreshId = setInterval(function() {
-//                //      $("#chatbox").load('chat.html');
-////                        alert("Działaj!");
-//                }, 5000);
-//                $.ajaxSetup({ cache: false });
-
-//                  $("#chatbox").load("/chat.html", function(response, status, xhr) {
-//                    if (status == "error") {
-//                        var msg = "Sorry but there was an error: ";
-//                        $("#chatbox").html(msg + xhr.status + " " + xhr.statusText);
-//                    }
-//                $("#chatbox").html("Hello");
+                    $("#chatForm\\:chatbox").load("chat.html");
+                    var refreshId = setInterval(function() {
+                        $("#chatForm\\:chatbox").load('chat.html');
+                    }, 1000);
+                    $.ajaxSetup({ cache: false });
                 });
             </script>
         </h:head>
         <h:body>  
-<!--            <a4j:region>
-                <h:form>
-                    <a4j:poll id="poll" interval="500" enabled="true"
-                        reRender="chatbox" />
-                </h:form>
-            </a4j:region>-->
             <h:form id="chatForm">
                 <div id="wrapper">
                     <div id="menu">
@@ -47,8 +32,7 @@
                         <div style="clear:both"> </div>
                     </div>      
 <!--                  <div id="chatbox" ></div> -->
-                <h:inputTextarea id="chatbox" class="chat" readonly="true" />
-
+                    <h:inputTextarea id="chatbox" class="chat" readonly="true" />
                     <h:selectManyListbox id="userList" class="user">
                         <f:selectItems value="#{Chat.returnUserzy()}" />
                     </h:selectManyListbox>

@@ -48,14 +48,14 @@
                         </p>
                         <div style="clear:both"> </div>
                     </div>      
-<!--                  <div id="chatbox" ></div> -->
-                    <h:inputTextarea id="chatbox" class="chat" readonly="true" />
+                  <div id="chatForm:chatbox" class="chat"></div> 
+<!--                    <h:inputTextarea id="chatbox" class="chat" readonly="true" />-->
                     <h:selectManyListbox id="userList" class="user">
                         <f:selectItems value="#{Chat.returnUserzy()}" />
                     </h:selectManyListbox>
 
                 <h:inputText id="userMessage" class="uMessage" value="#{Message.message}" required="true"/>
-                <h:commandButton id="submitMessage" value="Wyślij" action="#{Chat.addMessage(User.writeMessage(Message))}" />    
+                <h:commandButton id="submitMessage" value="Wyślij" action="#{Chat.addMessage(User.writeMessage(Message, Emoticons))}" />    
                 </div>
             </h:form>
         </h:body>

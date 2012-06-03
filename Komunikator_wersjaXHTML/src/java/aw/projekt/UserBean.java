@@ -4,18 +4,16 @@
  */
 package aw.projekt;
 
-import java.util.ArrayList;
-import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
 
 /**
  *
  * @author Karolina
  */
-@Stateless
+@Stateful
 @LocalBean
 @SessionScoped
 @ManagedBean(name="User")
@@ -92,9 +90,14 @@ public class UserBean {
     }
     
     public String writeMessage(MessageBean msg) {        
-        String chatBoxMsg = "<" + msg.getTime() + " " + this.name + "> " + msg.getMessage() + "\n";
+        String chatBoxMsg = "<" + msg.getTime() + " " + this.name + "> " + msg.getMessage() + "<br />";
         msg.setMessage("");
         return chatBoxMsg;
+    }
+    
+    public String writeMessage(MessageBean msg, EmoticonsBean emots) {   
+        emots.insertEmoticons(msg);
+        return this.writeMessage(msg);
     }
     
 }

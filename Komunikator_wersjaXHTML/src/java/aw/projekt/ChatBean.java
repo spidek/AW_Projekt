@@ -37,7 +37,7 @@ public class ChatBean {
         String chatHtmlPath = ctx.getRealPath("/") + "chat.html";
         try {
             this.chatHtmlBufferWriter = new FileOutputStream(chatHtmlPath);  
-            this.chatHtmlBufferWriter.write("Start chatu ąęć.\n".getBytes());
+            this.chatHtmlBufferWriter.write("Start chatu ąęć. <br />".getBytes());
         } catch (IOException ex) {
             this.chatHtmlBufferWriter.close();
             throw ex;

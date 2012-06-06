@@ -4,6 +4,7 @@
  */
 package aw.projekt;
 
+import com.sun.faces.context.SessionMap;
 import java.io.*;
 import java.util.*; 
 import java.util.logging.Level;
@@ -19,6 +20,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -82,5 +85,13 @@ public class ChatBean {
     
     public int getNumerOfUsers(){
         return users.size();
+    }
+    
+    public String doLogout() {        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession httpSession = (HttpSession)facesContext.getExternalContext().getSession(false);
+        httpSession.invalidate();
+//        this.removeUser(users.remove(user.getName()));
+        return "logowanie"; // bez rozszerzenia się wysypuje, why?
     }
 }

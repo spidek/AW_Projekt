@@ -74,7 +74,7 @@ public class UserBean {
     public String getInfo(){
         return "Witaj!";
     }
-
+    
     /**
      * @return the chkBoxChecked
      */

@@ -42,7 +42,7 @@
                     <div id="menu">
                         <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> <!-- <%= session.getAttribute("name") %> -->
                         <p class="logout">
-                            <h:outputLink value="logowanie.xhtml"> 
+                            <h:outputLink value="#{Chat.doLogout()}"> 
                                 <h:outputText value="Wyjście z czatu"/> 
                             </h:outputLink>
                         </p>

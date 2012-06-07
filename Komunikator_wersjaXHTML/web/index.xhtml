@@ -36,18 +36,20 @@
                 });
             </script>
         </h:head>
-        <h:body>  
-            <h:form id="chatForm">
+        <h:body>
+            <h:form>
                 <div id="wrapper">
                     <div id="menu">
-                        <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> 
-                        <p class="logout">
-                            <h:outputLink value="#{Chat.doLogout(User)}"> <!--logowanie.xhtml-->
-                                <h:outputText value="Wyjście z czatu"/> 
-                            </h:outputLink>
-                        </p>
-                        <div style="clear:both"> </div>
-                    </div>      
+                            <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> 
+                            <p class="logout">
+                                <h:commandButton value="Wyjście z czatu" action="#{Chat.doLogout(User)}" />
+                            </p>
+                            <div style="clear:both"> </div>
+                    </div>
+                </div>
+            </h:form>
+            <h:form id="chatForm">
+                <div id="wrapper">     
                   <div id="chatForm:chatbox" class="chat"></div> 
 <!--                    <h:inputTextarea id="chatbox" class="chat" readonly="true" />-->
                     <h:selectManyListbox id="userList" class="user">

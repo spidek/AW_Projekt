@@ -66,7 +66,7 @@ a:hover { text-decoration:underline; }
   
 .error { color: #ff0000; }  
   
-#menu { padding:12.5px 25px 12.5px 25px; }  
+#menu { padding: 12.5px 25px 0px 25px; }  
 
 #userList { 
     float: left; 

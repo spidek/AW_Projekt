@@ -33,6 +33,7 @@ import javax.servlet.http.HttpSession;
 public class ChatBean {
 
     private List<String> users = new ArrayList<String>();
+    private String newUser;
     FileOutputStream chatHtmlBufferWriter;
             
     public ChatBean () throws IOException {
@@ -93,5 +94,19 @@ public class ChatBean {
         httpSession.invalidate();
         this.removeUser(user.getName());
         return "logowanie.xhtml"; 
+    }
+    
+    public String compareLogin() { 
+        for (int i = 0; i < users.size(); i++){
+            if(users.contains(newUser)){
+//                users.remove(newUser);
+                return "logowanie.xhtml";
+            }
+            else {
+                users.add(newUser);
+                return "index.xhtml";
+            }
+        }
+        return ""; // nie wiem co zwrócić ostatecznie :( 
     }
 }

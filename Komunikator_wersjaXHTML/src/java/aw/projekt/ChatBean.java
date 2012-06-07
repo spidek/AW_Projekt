@@ -87,11 +87,11 @@ public class ChatBean {
         return users.size();
     }
     
-    public String doLogout() {        
+    public String doLogout(UserBean user) {        
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession)facesContext.getExternalContext().getSession(false);
         httpSession.invalidate();
-//        this.removeUser(users.remove(user.getName()));
-        return "logowanie"; // bez rozszerzenia się wysypuje, why?
+        this.removeUser(user.getName());
+        return "logowanie.xhtml"; 
     }
 }

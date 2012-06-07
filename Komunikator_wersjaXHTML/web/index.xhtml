@@ -40,9 +40,9 @@
             <h:form id="chatForm">
                 <div id="wrapper">
                     <div id="menu">
-                        <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> <!-- <%= session.getAttribute("name") %> -->
+                        <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> 
                         <p class="logout">
-                            <h:outputLink value="#{Chat.doLogout()}"> 
+                            <h:outputLink value="#{Chat.doLogout(User)}"> <!--logowanie.xhtml-->
                                 <h:outputText value="Wyjście z czatu"/> 
                             </h:outputLink>
                         </p>

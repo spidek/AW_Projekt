@@ -4,23 +4,17 @@
  */
 package aw.projekt;
 
-import com.sun.faces.context.SessionMap;
-import java.io.*;
-import java.util.*; 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PreDestroy;
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -75,6 +69,9 @@ public class ChatBean {
     }
     
     public synchronized String addUser(UserBean user) throws IOException{
+        if (this.isUserNameTaken(user.getName())){
+            return "logowanie.xhtml";
+        }
         users.add(user.getName());
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         return "index";
@@ -96,17 +93,12 @@ public class ChatBean {
         return "logowanie.xhtml"; 
     }
     
-    public String compareLogin() { 
-        for (int i = 0; i < users.size(); i++){
-            if(users.contains(newUser)){
-//                users.remove(newUser);
-                return "logowanie.xhtml";
-            }
-            else {
-                users.add(newUser);
-                return "index.xhtml";
+    public boolean isUserNameTaken(String userName) {
+        for (String name : users) {
+            if (name.compareToIgnoreCase(userName) == 0) {
+                return true;
             }
         }
-        return ""; // nie wiem co zwrócić ostatecznie :( 
+        return false;
     }
 }

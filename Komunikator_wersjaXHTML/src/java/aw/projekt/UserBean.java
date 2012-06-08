@@ -27,6 +27,7 @@ public class UserBean {
     
     public UserBean() { 
         this.chkBoxChecked = false; 
+        this.info = "Witaj!";
     }
     
     /**
@@ -72,7 +73,11 @@ public class UserBean {
     }
     
     public String getInfo(){
-        return "Witaj!";
+        return info;
+    }
+    
+    public void setInfo(String info){
+        this.info = info;
     }
     
     /**

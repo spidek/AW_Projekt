@@ -35,7 +35,7 @@ public class ChatBean {
         String chatHtmlPath = ctx.getRealPath("/") + "chat.html";
         try {
             this.chatHtmlBufferWriter = new FileOutputStream(chatHtmlPath);  
-            this.chatHtmlBufferWriter.write("Start chatu ąęć. <br />".getBytes());
+            this.chatHtmlBufferWriter.write("Start chatu ąęć. <br />".getBytes("UTF-8"));
         } catch (IOException ex) {
             this.chatHtmlBufferWriter.close();
             throw ex;
@@ -70,6 +70,7 @@ public class ChatBean {
     
     public synchronized String addUser(UserBean user) throws IOException{
         if (this.isUserNameTaken(user.getName())){
+            user.setInfo("Użytkownik o podanym loginie już istnieje");
             return "logowanie.xhtml";
         }
         users.add(user.getName());
@@ -90,7 +91,8 @@ public class ChatBean {
         HttpSession httpSession = (HttpSession)facesContext.getExternalContext().getSession(false);
         httpSession.invalidate();
         this.removeUser(user.getName());
-        return "logowanie.xhtml"; 
+        user.setInfo("Zostałeś wylogowany");
+        return "logowanie.xhtml";
     }
     
     public boolean isUserNameTaken(String userName) {

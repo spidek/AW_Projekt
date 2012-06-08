@@ -37,8 +37,9 @@
             </script>
         </h:head>
         <h:body>
+            <div id="wrapper">
             <h:form>
-                <div id="wrapper">
+<!--                <div id="wrapper">-->
                     <div id="menu">
                             <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> 
                             <p class="logout">
@@ -46,10 +47,10 @@
                             </p>
                             <div style="clear:both"> </div>
                     </div>
-                </div>
+<!--                </div>-->
             </h:form>
             <h:form id="chatForm">
-                <div id="wrapper">     
+<!--                <div id="wrapper">     -->
                   <div id="chatForm:chatbox" class="chat"></div> 
 <!--                    <h:inputTextarea id="chatbox" class="chat" readonly="true" />-->
                     <h:selectManyListbox id="userList" class="user">
@@ -58,8 +59,9 @@
 
                 <h:inputText id="userMessage" class="uMessage" value="#{Message.message}" required="true"/>
                 <h:commandButton id="submitMessage" value="Wyślij" action="#{Chat.addMessage(User.writeMessage(Message, Emoticons))}" />    
-                </div>
+<!--                </div>-->
             </h:form>
+            </div>
         </h:body>
     </f:view>
 </html>

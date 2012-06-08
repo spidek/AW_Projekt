@@ -12,15 +12,16 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Logowanie</title>
         <link type="text/css" rel="stylesheet" href="style/style.css" /> 
+        <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
     </h:head>
     <body>
         <h1><h:outputText value="#{User.info}" /></h1>
-            <div id="loginform">
-                <h:form>
+            <div id="loginform" class="hero-unit">
+                <h:form styleClass="form-horizontal">
                     <p>Wypełnij wymagane pola, aby przejść do czatu:</p>
                     <font color="red">*</font>
                     <h:outputText value="Imię: "></h:outputText>
-                    <h:inputText id="name" label="name" required="true" value="#{User.name}"/>
+                    <h:inputText id="name" label="#{User.brakImienia}" required="true" value="#{User.name}" />
                     
             <p>Pola oznaczone symbolem <font color="red">*</font> są wymagane.</p>
             
@@ -33,7 +34,7 @@ and open the template in the editor.
                     <h:selectBooleanCheckbox value="#{User.chkBoxChecked}">
                         <f:ajax event="click" render="@form" />
                     </h:selectBooleanCheckbox>
-                    <h:outputText value="Więcej informacji" />
+                    <h:outputText value=" Więcej informacji" />
                 </legend>
                 <h:panelGroup>
                     <p>
@@ -46,9 +47,9 @@ and open the template in the editor.
                     </p>
                 </h:panelGroup>
             </fieldset>
-            <h:commandButton value="Wejdź" action="#{Chat.addUser(User)}" />                    
+            <h:commandButton value="Wejdź" action="#{Chat.addUser(User)}" styleClass="btn btn-primary" id="wejdzButton"/>                    
             </h:form>
-        <h:message for="name" errorClass="error" /> <br /><br />
+                <h:message for="name" errorClass="error" /> <br /><br />
             </div>
     </body>
 </f:view>

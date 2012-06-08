@@ -23,11 +23,13 @@ public class UserBean {
     private String city;
     private String age;
     private String info; 
+    private String brakImienia; 
     private boolean chkBoxChecked;
     
     public UserBean() { 
         this.chkBoxChecked = false; 
         this.info = "Witaj!";
+        this.brakImienia = "Pole Imię nie może być puste";
     }
     
     /**
@@ -103,6 +105,13 @@ public class UserBean {
     public String writeMessage(MessageBean msg, EmoticonsBean emots) {   
         emots.insertEmoticons(msg);
         return this.writeMessage(msg);
+    }
+
+    /**
+     * @return the brakImienia
+     */
+    public String getBrakImienia() {
+        return brakImienia;
     }
     
 }

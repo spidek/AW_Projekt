@@ -8,6 +8,7 @@
             <title>Komunikator internetowy</title>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <link type="text/css" rel="stylesheet" href="style/style.css" /> 
+            <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
             <script src="http://code.jquery.com/jquery-latest.js"></script>
             <script>
                 var currPos = 0;
@@ -37,19 +38,19 @@
             </script>
         </h:head>
         <h:body>
-            <div id="wrapper">
-            <h:form>
+            <div id="wrapper" class="hero-unit">
+            <h:form styleClass="form-horizontal">
 <!--                <div id="wrapper">-->
                     <div id="menu">
                             <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> 
                             <p class="logout">
-                                <h:commandButton value="Wyjście z czatu" action="#{Chat.doLogout(User)}" />
+                                <h:commandButton value="Wyjście z czatu" action="#{Chat.doLogout(User)}" styleClass="btn btn-primary" />
                             </p>
                             <div style="clear:both"> </div>
                     </div>
 <!--                </div>-->
             </h:form>
-            <h:form id="chatForm">
+            <h:form id="chatForm" styleClass="form-horizontal">
 <!--                <div id="wrapper">     -->
                   <div id="chatForm:chatbox" class="chat"></div> 
 <!--                    <h:inputTextarea id="chatbox" class="chat" readonly="true" />-->
@@ -57,8 +58,8 @@
                         <f:selectItems value="#{Chat.returnUserzy()}" />
                     </h:selectManyListbox>
 
-                <h:inputText id="userMessage" class="uMessage" value="#{Message.message}" required="true"/>
-                <h:commandButton id="submitMessage" value="Wyślij" action="#{Chat.addMessage(User.writeMessage(Message, Emoticons))}" />    
+                <h:inputText class="uMessage" value="#{Message.message}" required="true"/>
+                <h:commandButton id="submitMessage" value="Wyślij" action="#{Chat.addMessage(User.writeMessage(Message, Emoticons))}" styleClass="btn btn-primary" />    
 <!--                </div>-->
             </h:form>
             </div>

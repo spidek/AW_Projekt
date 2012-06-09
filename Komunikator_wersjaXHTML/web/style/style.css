@@ -17,7 +17,7 @@ form, p, span {
     padding:0; }  
   
 input { font:12px arial; }  
-  
+
 a {  
     color:#0000FF;  
     text-decoration:none; }  
@@ -38,7 +38,7 @@ a:hover { text-decoration:underline; }
 #chatForm\:chatbox {  
     text-align:left;  
     margin:0 auto;  
-    margin-left: 25px; 
+    margin-left: 35px; 
     margin-bottom:25px;  
     padding: 5px 5px 5px 5px;  
     background:#fff;  
@@ -50,20 +50,16 @@ a:hover { text-decoration:underline; }
     height: 290px;
     width: 300px; 
     background: white;
-    border: black solid 1px;
+    border: 1px solid #CCC;
+    border-radius: 3px;
 }
-  
-#userMessage {  
-    width:395px;  
+
+.uMessage {
+    width: 300px; 
     border:1px solid #ACD8F0; 
-} 
+    margin-right: 65px; 
+}
 
-.uMessage {width: 350px; }
-  
-#submit { width: 60px; } 
-
-#commandButton { width: 60px; }
-  
 .error { color: #ff0000; }  
   
 #menu { padding: 12.5px 25px 12.5px 25px; }  
@@ -77,7 +73,8 @@ a:hover { text-decoration:underline; }
     height: 295px;
     width: 100px;
     margin-bottom: 7px; 
-    margin-left: 10px
+    margin-left: 10px;
+    border-radius: 3px;
 }
 
 .user option {

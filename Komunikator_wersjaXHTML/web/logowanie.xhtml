@@ -56,11 +56,11 @@ and open the template in the editor.
             <c:if test="#{User.userExists}">
                 <h:outputLabel value="#{i18n.userExists}" style="color: red" />
             </c:if>
-            <h:form>
+            <h:form id="lanForm">
                 ${i18n.language}:
                 <h:selectOneRadio value="#{User.language}">
-                   <f:selectItem itemValue="pl" itemLabel="pl" /> 
                    <f:selectItem itemValue="en" itemLabel="en" /> 
+                   <f:selectItem itemValue="pl" itemLabel="pl" /> 
                 </h:selectOneRadio>
                 <h:commandButton value="#{i18n.submit}" action="logowanie.xhtml" styleClass="btn btn-primary" /> 
             </h:form>

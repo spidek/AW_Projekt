@@ -30,7 +30,7 @@ public class UserBean {
     public UserBean() { 
         this.chkBoxChecked = false; 
         this.userExists = false;
-        this.language = "en";
+        this.language = "pl";
         this.brakImienia = "Pole Imię nie może być puste";
     }
     

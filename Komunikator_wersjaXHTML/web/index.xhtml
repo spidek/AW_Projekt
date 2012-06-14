@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core" >
-    <f:view>
+    <f:view locale="#{User.language}">
         <h:head>
-            <title>Komunikator internetowy</title>
+            <title>${i18n.title}</title>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <link type="text/css" rel="stylesheet" href="style/style.css" /> 
             <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
@@ -38,13 +38,14 @@
             </script>
         </h:head>
         <h:body>
+            <f:loadBundle basename="aw.projekt.index" var="i18n" />
             <div id="wrapper" class="hero-unit">
             <h:form styleClass="form-horizontal">
 <!--                <div id="wrapper">-->
                     <div id="menu">
-                            <p class="welcome">Witaj, <b><h:outputText value="#{User.name}" /></b></p> 
+                            <p class="welcome">${i18n.welcome}, <b><h:outputText value="#{User.name}" /></b></p> 
                             <p class="logout">
-                                <h:commandButton value="Wyjście z czatu" action="#{Chat.doLogout(User)}" styleClass="btn btn-primary" />
+                                <h:commandButton value="${i18n.logoutButton}" action="#{Chat.doLogout(User)}" styleClass="btn btn-primary" />
                             </p>
                             <div style="clear:both"> </div>
                     </div>
@@ -59,7 +60,7 @@
                     </h:selectManyListbox>
 
                 <h:inputText class="uMessage" value="#{Message.message}" required="true"/>
-                <h:commandButton id="submitMessage" value="Wyślij" action="#{Chat.addMessage(User.writeMessage(Message, Emoticons))}" styleClass="btn btn-primary" />    
+                <h:commandButton id="submitMessage" value="${i18n.sendMsgBtn}" action="#{Chat.addMessage(User.writeMessage(Message, Emoticons))}" styleClass="btn btn-primary" />    
 <!--                </div>-->
             </h:form>
             </div>

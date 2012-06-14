@@ -22,13 +22,15 @@ public class UserBean {
     private String name;
     private String city;
     private String age;
-    private String info; 
+    private String language; 
+    private boolean userExists;
     private String brakImienia; 
     private boolean chkBoxChecked;
     
     public UserBean() { 
         this.chkBoxChecked = false; 
-        this.info = "Witaj!";
+        this.userExists = false;
+        this.language = "en";
         this.brakImienia = "Pole Imię nie może być puste";
     }
     
@@ -43,6 +45,7 @@ public class UserBean {
      * @param name the name to set
      */
     public void setName(String name) {
+        this.userExists = false;
         this.name = name;
     }
 
@@ -72,14 +75,6 @@ public class UserBean {
      */
     public void setAge(String age) {
         this.age = age;
-    }
-    
-    public String getInfo(){
-        return info;
-    }
-    
-    public void setInfo(String info){
-        this.info = info;
     }
     
     /**
@@ -112,6 +107,34 @@ public class UserBean {
      */
     public String getBrakImienia() {
         return brakImienia;
+    }
+
+    /**
+     * @return the language
+     */
+    public String getLanguage() {
+        return language;
+    }
+
+    /**
+     * @param language the language to set
+     */
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    /**
+     * @return the userExists
+     */
+    public boolean isUserExists() {
+        return userExists;
+    }
+
+    /**
+     * @param userExists the userExists to set
+     */
+    public void setUserExists(boolean userExists) {
+        this.userExists = userExists;
     }
     
 }

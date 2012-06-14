@@ -70,7 +70,7 @@ public class ChatBean {
     
     public synchronized String addUser(UserBean user) throws IOException{
         if (this.isUserNameTaken(user.getName())){
-            user.setInfo("Użytkownik o podanym loginie już istnieje");
+            user.setUserExists(true);
             return "logowanie.xhtml";
         }
         users.add(user.getName());
@@ -91,7 +91,6 @@ public class ChatBean {
         HttpSession httpSession = (HttpSession)facesContext.getExternalContext().getSession(false);
         httpSession.invalidate();
         this.removeUser(user.getName());
-        user.setInfo("Zostałeś wylogowany");
         return "logowanie.xhtml";
     }
     

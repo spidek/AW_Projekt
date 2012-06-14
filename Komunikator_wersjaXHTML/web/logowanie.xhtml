@@ -6,29 +6,31 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-<f:view>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<f:view locale="#{User.language}">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Logowanie</title>
+        <title>${i18n.title}</title>
         <link type="text/css" rel="stylesheet" href="style/style.css" /> 
         <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
     </h:head>
     <body>
-        <h1><h:outputText value="#{User.info}" /></h1>
+        <f:loadBundle basename="aw.projekt.logowanie" var="i18n" />
+        <h1><h:outputText value="#{i18n.welcome}" /></h1>
             <div id="loginform" class="hero-unit">
                 <h:form styleClass="form-horizontal">
-                    <p>Wypełnij wymagane pola, aby przejść do czatu:</p>
+                    <p>${i18n.info}</p>
                     <font color="red">*</font>
-                    <h:outputText value="Imię: "></h:outputText>
+                    <h:outputText value="#{i18n.name}: "></h:outputText>
                     <h:inputText id="name" label="#{User.brakImienia}" required="true" value="#{User.name}" />
                     
-            <p>Pola oznaczone symbolem <font color="red">*</font> są wymagane.</p>
+            <p>${i18n.requiredFields}</p>
             
             <!-- chciałam zrobić takie rozwiązanie jak na ten stronie: 
             http://stackoverflow.com/questions/3698579/show-hide-jsf2-form-using-selectbooleancheckbox 
             -->
-               
+            <!--
             <fieldset>
                 <legend>
                     <h:selectBooleanCheckbox value="#{User.chkBoxChecked}">
@@ -46,10 +48,22 @@ and open the template in the editor.
                         <h:inputText id="age" value="#{User.age}" />
                     </p>
                 </h:panelGroup>
-            </fieldset>
-            <h:commandButton value="Wejdź" action="#{Chat.addUser(User)}" styleClass="btn btn-primary" />                    
+            </fieldset> 
+            -->
+            <h:commandButton value="#{i18n.enter}" action="#{Chat.addUser(User)}" styleClass="btn btn-primary" />                    
             </h:form>
-                <h:message for="name" errorClass="error" /> <br /><br />
+                <h:message for="name" errorClass="error" />
+            <c:if test="#{User.userExists}">
+                <h:outputLabel value="#{i18n.userExists}" style="color: red" />
+            </c:if>
+            <h:form>
+                ${i18n.language}:
+                <h:selectOneRadio value="#{User.language}">
+                   <f:selectItem itemValue="pl" itemLabel="pl" /> 
+                   <f:selectItem itemValue="en" itemLabel="en" /> 
+                </h:selectOneRadio>
+                <h:commandButton value="#{i18n.submit}" action="logowanie.xhtml" styleClass="btn btn-primary" /> 
+            </h:form>
             </div>
     </body>
 </f:view>

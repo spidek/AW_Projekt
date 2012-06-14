@@ -11,26 +11,29 @@
             <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
             <script src="http://code.jquery.com/jquery-latest.js"></script>
             <script>
+                var chat = 'chat';
                 var currPos = 0;
                 var loadChat = function() {
-                    $("#chatForm\\:chatbox").load('chat.html');
+                    $("#chatForm\\:chatbox").load(chat);
                     currPos = $(".chat")[0].scrollHeight;
                     $(".chat").scrollTop(currPos);
                 }
                 var scrollChat = function() {
-                    $("#chatForm\\:chatbox").load('chat.html');
+                    $("#chatForm\\:chatbox").load(chat);
                     $(".chat").scrollTop(currPos);
                 }
                 var currPos;
                 
                 $(document).ready(function() {
-                    $("#chatForm\\:chatbox").load('chat.html', function(){
+                    $("#chatForm\\:chatbox").load(chat, function(){
                         loadChat();
                     });
                     var refreshId = setInterval(function() {
                         scrollChat();
                     }, 1000);
-                    $.ajaxSetup({ cache: false });                    
+                    $.ajaxSetup({ 
+                        cache: false
+                    });
                     $("#chatForm\\:chatbox").scroll(function() {
                         currPos = $(".chat").scrollTop();
                     });

@@ -6,6 +6,7 @@ package aw.projekt;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PreDestroy;
@@ -32,10 +33,10 @@ public class ChatBean {
             
     public ChatBean () throws IOException {
         ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String chatHtmlPath = ctx.getRealPath("/") + "chat.html";
+        String chatHtmlPath = ctx.getRealPath("/") + "chat";
         try {
-            this.chatHtmlBufferWriter = new FileOutputStream(chatHtmlPath);  
-            this.chatHtmlBufferWriter.write("Start chatu ąęć. <br />".getBytes("UTF-8"));
+            this.chatHtmlBufferWriter = new FileOutputStream(chatHtmlPath);         
+            this.chatHtmlBufferWriter.write("Start chatu. <br />".getBytes("UTF-8"));
         } catch (IOException ex) {
             this.chatHtmlBufferWriter.close();
             throw ex;
@@ -44,21 +45,20 @@ public class ChatBean {
         users.add("Admin");
     }
     
+    public String getEncoding() {
+        return Charset.defaultCharset().toString();
+    }
+    
     @PreDestroy
     public void closeFileBuffor() throws Exception {
         this.chatHtmlBufferWriter.close();
     }
     
     public String addMessage(String msg) throws IOException {
-        this.chatHtmlBufferWriter.write(msg.getBytes());    
+        this.chatHtmlBufferWriter.write(msg.getBytes("UTF-8"));    
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         return "index"; 
     } 
-    
-    public String showMePath() {
-        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        return ctx.getRealPath("/") + "chat.html";
-    }
     
     public SelectItem[] returnUserzy (){        
         SelectItem[] usersBox = new SelectItem[users.size()];
